@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wx.redis.dao.CategoryRecordDao">
+	<!-- <cache /> -->
+
+	<!-- ///////////////////////////基础接口定义///////////////////////////////// -->
+	
+	<select id="getCategoryRecordList" resultType="com.wx.redis.entity.CategoryRecord">
+		SELECT
+			id as id,
+			objectType as objectType,
+			department as department,
+			groups as groups,
+			partyId as partyId,
+			title as title,
+			titleImage as titleImage,
+			digest as digest,
+			type as type,
+			isAtlas as isAtlas,
+			isShare as isShare,
+			isComment as isComment,
+			layout as layout,
+			pviews as pviews,
+			commentCount as commentCount,
+			participant as participant,
+			endTime as endTime,
+			address as address,
+			isLive as isLive,
+			orgId as orgId,
+			orgType as orgType,
+			show_index as show_index,
+			createDate as createDate,
+			updateDate as updateDate
+		FROM
+			(
+				SELECT
+					n.id,
+					1 AS objectType,
+					n.department,
+					n.groups,
+					n.partyid,
+					n.title,
+					n.titleImage,
+					n.digest,
+					n.type,
+					n.isAtlas,
+					n.isShare,
+					n.isComment,
+					n.layout,
+					n.pviews,
+					n.commentCount,
+					NULL AS participant,
+					NULL AS endTime,
+					NULL AS address,
+					n.isLive,
+					n.orgId,
+					n.BELONG_ORG_TYPE AS orgType,
+					th.show_index,
+					n.createDate,
+					n.updataDate AS updateDate
+				FROM
+					news n,
+					ty_homepage_content th,
+					news_category_relevance ncr
+				WHERE
+					n.ID = th.id
+				AND n.id = ncr.newsid
+				AND th.object_type = 1
+				AND n.isPulish = 1
+				AND n.online_state = 1
+				AND n.TENANT_ID = '02000000'
+				AND ncr.categoryId = 1
+				UNION
+					SELECT
+						a.id,
+						2,
+						a.depView,
+						a.groupView,
+						a.partyView,
+						a.`name`,
+						a.titleImage,
+						a.digest,
+						a.typeId,
+						NULL,
+						a.isShare,
+						a.isComment,
+						NULL,
+						a.reviewCount,
+						a.commentCount,
+						a.participant,
+						a.endTime,
+						a.address,
+						NULL,
+						a.organizationId,
+						'1',
+						th.show_index,
+						a.create_date,
+						a.last_update_date
+					FROM
+						activity a,
+						ty_homepage_content th
+					WHERE
+						a.id = th.id
+					AND th.object_type = 2
+					AND a.`status` = 1
+					AND a.tenant_id = '02000000'
+					AND INSTR(
+						CONCAT(',', a.categoryId, ','),
+						CONCAT(',', 1, ',')
+					)
+			) t
+		WHERE
+			1 = 1
+	</select>
+
+ 
+</mapper>
+
