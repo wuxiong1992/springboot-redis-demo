@@ -1,7 +1,7 @@
-package com.wx.redis.controller;
+package com.redis.controller;
 
-import com.wx.redis.entity.CategoryRecord;
-import com.wx.redis.service.CategoryRecordService;
+import com.redis.entity.CategoryRecord;
+import com.redis.service.CategoryRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;

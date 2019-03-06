@@ -1,6 +1,6 @@
-package com.wx.redis.dao;
+package com.redis.dao;
 
-import com.wx.redis.entity.CategoryRecord;
+import com.redis.entity.CategoryRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

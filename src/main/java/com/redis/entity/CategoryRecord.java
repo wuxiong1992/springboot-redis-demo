@@ -1,4 +1,4 @@
-package com.wx.redis.entity;
+package com.redis.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

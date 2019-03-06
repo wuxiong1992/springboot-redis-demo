@@ -1,7 +1,7 @@
-package com.wx.redis.controller;
+package com.redis.controller;
 
-import com.wx.redis.dao.PersonDao;
-import com.wx.redis.entity.Person;
+import com.redis.entity.Person;
+import com.redis.dao.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

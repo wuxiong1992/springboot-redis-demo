@@ -1,6 +1,6 @@
-package com.wx.redis.dao;
+package com.redis.dao;
 
-import com.wx.redis.entity.Person;
+import com.redis.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;

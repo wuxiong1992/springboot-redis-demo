@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wx.redis.dao.CategoryRecordDao">
+<mapper namespace="com.redis.dao.CategoryRecordDao">
 	<!-- <cache /> -->
 
 	<!-- ///////////////////////////基础接口定义///////////////////////////////// -->
 	
-	<select id="getCategoryRecordList" resultType="com.wx.redis.entity.CategoryRecord">
+	<select id="getCategoryRecordList" resultType="com.redis.entity.CategoryRecord">
 		SELECT
 			id as id,
 			objectType as objectType,
